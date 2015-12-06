@@ -20,7 +20,7 @@
 
 -module(plumtree_util).
 
--export([build_tree/3]).
+-export([build_tree/3, stress_test/0]).
 
 %% @doc Convert a list of elements into an N-ary tree. This conversion
 %%      works by treating the list as an array-based tree where, for
@@ -46,3 +46,9 @@ build_tree(N, Nodes, Opts) ->
                             {NewResult, Rest}
                     end, {[], tl(Expand)}, Nodes),
     orddict:from_list(Tree).
+
+-spec stress_test() -> any().
+stress_test() ->
+    Range4k = lists:seq(1, 4096),
+    Range10k = lists:seq(1, 10000),
+    [ plumtree_metadata:put({yunba,sub}, <<"t1">>, Range4k) || _N <- Range10k].

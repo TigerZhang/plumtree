@@ -17,7 +17,7 @@ compile: deps
 	./rebar3 compile
 
 rel:
-	./rebar3 release
+	./rebar3 release -n plumtree
 
 stage:
 	./rebar3 release -d
